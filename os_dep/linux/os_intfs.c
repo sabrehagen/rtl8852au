@@ -20,6 +20,9 @@ MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("Realtek Wireless Lan Driver");
 MODULE_AUTHOR("Realtek Semiconductor Corp.");
 MODULE_VERSION(DRIVERVERSION);
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 12, 0))
+MODULE_IMPORT_NS("VFS_internal_I_am_really_a_filesystem_and_am_NOT_a_driver");
+#endif
 
 
 int netdev_open(struct net_device *pnetdev);
@@ -3183,7 +3186,7 @@ int rtw_resume_process_wow(_adapter *padapter)
 			rtw_sta_media_status_rpt(padapter,
 					 rtw_get_stainfo(&padapter->stapriv,
 					 get_bssid(&padapter->mlmepriv)), 0);
-			if (MLME_IS_ASOC(padapter) == _TRUE) 
+			if (MLME_IS_ASOC(padapter) == _TRUE)
 				rtw_free_assoc_resources(padapter, _TRUE);
 			rtw_indicate_disconnect(padapter, 0, _FALSE);
 			pmlmeinfo->state = WIFI_FW_NULL_STATE;

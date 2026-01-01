@@ -358,7 +358,7 @@ int rtw_pm_set_wow_lps(_adapter *padapter, u8 mode)
 	struct pwrctrl_priv *pwrctrlpriv = adapter_to_pwrctl(padapter);
 
 	if (mode < PM_PS_MODE_NUM) {
-		if (pwrctrlpriv->wowlan_power_mgmt != mode) 
+		if (pwrctrlpriv->wowlan_power_mgmt != mode)
 			pwrctrlpriv->wowlan_power_mgmt = mode;
 	} else
 		ret = -EINVAL;
@@ -722,4 +722,3 @@ void rtw_dev_pno_debug(struct net_device *net)
 }
 #endif /* CONFIG_PNO_SET_DEBUG */
 #endif /* CONFIG_PNO_SUPPORT */
-
